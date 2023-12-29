@@ -3,7 +3,7 @@ import { gql, useQuery } from "@apollo/client";
 import Persons from "./Persons";
 
 const ALL_PERSONS = gql`
-  query {
+  query getPersons {
     allPersons {
       name
       phone
