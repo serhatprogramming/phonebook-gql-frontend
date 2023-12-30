@@ -1,17 +1,8 @@
 import React from "react";
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import Persons from "./Persons";
 import PersonForm from "./PersonForm";
-
-const ALL_PERSONS = gql`
-  query getPersons {
-    allPersons {
-      name
-      phone
-      id
-    }
-  }
-`;
+import { ALL_PERSONS } from "./queries";
 
 const App = () => {
   const result = useQuery(ALL_PERSONS, { pollInterval: 2000 });
