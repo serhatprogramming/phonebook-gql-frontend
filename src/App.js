@@ -5,7 +5,7 @@ import PersonForm from "./PersonForm";
 import { ALL_PERSONS } from "./queries";
 
 const App = () => {
-  const result = useQuery(ALL_PERSONS, { pollInterval: 2000 });
+  const result = useQuery(ALL_PERSONS);
   if (result.loading) {
     return <div>loading...</div>;
   }
