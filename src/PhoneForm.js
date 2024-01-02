@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 // queries
 import { EDIT_NUMBER } from "./queries";
 
-const PhoneForm = () => {
+const PhoneForm = ({ setError }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
-  const [changeNumber] = useMutation(EDIT_NUMBER);
+  const [changeNumber, result] = useMutation(EDIT_NUMBER);
+
+  useEffect(() => {
+    if (result.data && result.data.editNumber === null) {
+      setError("person not found");
+    } else if (result.data && result.data.editNumber) {
+      setError(
+        `${result.data.editNumber.name}'s phone number is updated successfully`
+      );
+    }
+  }, [result.data]);
 
   const submit = (event) => {
     event.preventDefault();
